@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from config.settings import settings
 # Define la URL de conexión (ajusta usuario, contraseña, host, puerto y base de datos)
 
-DATABASE_URL = f"postgresql+asyncpg://{settings.user}:{settings.password}@{settings.host}/{settings.bd_name}"
+DATABASE_URL=f"postgresql+asyncpg://{settings.user}:{settings.password}@/{settings.bd_name}?host={settings.host}"
 
 print(DATABASE_URL)
 
