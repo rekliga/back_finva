@@ -12,6 +12,8 @@ class Settings(BaseSettings):
     #claves para maps
     API_KEY:str
     BASE_URL:str
+    #ENV
+    enviroment:str
     class Config:
         env_file = ".env"
 

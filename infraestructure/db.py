@@ -10,6 +10,7 @@ if settings.enviroment != "local":
 else:
     DATABASE_URL = f"postgresql+asyncpg://{settings.user}:{settings.password}@{settings.host}:{settings.port}/{settings.bd_name}"
 
+print(DATABASE_URL)
 
 engine = create_async_engine(DATABASE_URL, echo=False)
 
