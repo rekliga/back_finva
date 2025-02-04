@@ -2,7 +2,7 @@ import pytest
 from httpx import AsyncClient
 from fastapi import status
 from infraestructure.dependencias.containers import Container
-from app.utils.utils import BearerToken
+from app.utils.utils import BearerToken, utils
 from app.api.main import app  # Asegúrate de importar tu instancia de FastAPI
 
 
@@ -30,10 +30,9 @@ async def dummy_decode_token(token: str) -> BearerToken:
     return BearerToken(user_id=1, token=token)
 
 
-from app.utils import utils
-
-# 🔹 Sobrescribimos las dependencias para los tests
-app.dependency_overrides[Container.repositorio_catalogos] = lambda: DummyCatalogoRepository()
+app.dependency_overrides[Container.repositorio_catalogos] = (
+    lambda: DummyCatalogoRepository()
+)
 app.dependency_overrides[utils.decode_token] = dummy_decode_token
 
 

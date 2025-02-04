@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "back-finva"
+name = "back_finva"
 version = "0.1.0"
 description = ""
 authors = ["Ilker Francisco Zoni Gallegos"]
