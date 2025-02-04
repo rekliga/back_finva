@@ -66,7 +66,7 @@ def run_migrations_online() -> None:
         DATABASE_URL,
         poolclass=pool.NullPool,
     )
-
+    breakpoint()
     with connectable.connect() as connection:
         context.configure(
             connection=connection, target_metadata=target_metadata
