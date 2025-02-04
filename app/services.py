@@ -1,6 +1,7 @@
 from domain.category_repository import CatalogoRepository
+from domain.user_repository import UsersRepository
 from infraestructure.external_services.google_maps_service import GoogleMapsService
-from models.Sucursales import Sucursal
+from models.Formularios import FormularioRegistro
 from models.motocicletas import Motocicleta
 
 
@@ -24,5 +25,15 @@ class CatalogosService:
 
     async def obtener_sucursal_cercana(self, latitute: float, longitud: float):
         sucursales = await self.catalogo_repo.get_sucursales()
-        result = await GoogleMapsService.get_nearest_sucursal(latitute, longitud,sucursales)
+        result = await GoogleMapsService.get_nearest_sucursal(
+            latitute, longitud, sucursales
+        )
         return result
+
+
+class UserService:
+    def __init__(self, user_repository: UsersRepository):
+        self.user_repository = user_repository
+    
+    async def registro_cliente(self,payload:FormularioRegistro):
+        await self.user_repository.create_user(payload)      

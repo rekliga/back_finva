@@ -1,9 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from infraestructure.dependencias.containers import Container
 from app.services import CatalogosService
-from dependency_injector import containers
 from dependency_injector.wiring import inject, Provide
-from models.motocicletas import Motocicleta
 from models.responses import SuccessResponse, ErrorResponse
 
 router = APIRouter()
@@ -43,7 +41,7 @@ async def get_all_sucursales(
             offset=offset,
         )
     except Exception as e:
-        return ErrorResponse(message=str(e))
+        return ErrorResponse(message=str(e),status_code=500)
     return SuccessResponse(
         message="El recurso se consuto con exito", data={"result": result}
     )
@@ -62,7 +60,7 @@ async def closes_sucursal(
             longitud=longitud, latitute=latitude
         )
     except Exception as e:
-        return ErrorResponse(message=str(e))
+        return ErrorResponse(message=str(e),status_code=500)
     return SuccessResponse(
-        message="El recurso se consuto con exito", data={"result": result}
+        message="Sucursal más cercana encontrada", data={"result": result}
     )
