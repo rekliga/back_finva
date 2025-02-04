@@ -30,12 +30,37 @@ async def get_all_motocicletas(
 
 
 @router.get("/sucursales")
+@inject
 async def get_all_sucursales(
     limit: int = 10,
     offset: int = 0,
+    catalogo_repo=Depends(Provide[Container.repositorio_catalogos]),
 ):
     try:
-        ...
+        service = CatalogosService(catalogo_repo=catalogo_repo)
+        result = await service.obtener_sucursales(
+            limit=limit,
+            offset=offset,
+        )
+    except Exception as e:
+        return ErrorResponse(message=str(e))
+    return SuccessResponse(
+        message="El recurso se consuto con exito", data={"result": result}
+    )
+
+
+@router.get("/sucursales/nearest")
+@inject
+async def closes_sucursal(
+    longitud: float,
+    latitude: float,
+    catalogo_repo=Depends(Provide[Container.repositorio_catalogos]),
+):
+    try:
+        service = CatalogosService(catalogo_repo=catalogo_repo)
+        result = await service.obtener_sucursal_cercana(
+            longitud=longitud, latitute=latitude
+        )
     except Exception as e:
         return ErrorResponse(message=str(e))
     return SuccessResponse(

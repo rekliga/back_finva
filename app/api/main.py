@@ -6,7 +6,10 @@ from infraestructure.dependencias.containers import Container
 app = FastAPI()
 app.include_router(api_router)
 container = Container()
-container.init_resources()  # Inicializa recursos necesarios
-container.wire(
-    modules=["app.api.endpoints.catalogos"]
-)
+container.init_resources()
+container.wire(modules=["app.api.endpoints.catalogos"])
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    container.shutdown_resources()

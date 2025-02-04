@@ -9,6 +9,9 @@ class Settings(BaseSettings):
     bd_name: str
     password: str
 
+    #claves para maps
+    API_KEY:str
+    BASE_URL:str
     class Config:
         env_file = ".env"
 

@@ -1,4 +1,6 @@
 from domain.category_repository import CatalogoRepository
+from infraestructure.external_services.google_maps_service import GoogleMapsService
+from models.Sucursales import Sucursal
 from models.motocicletas import Motocicleta
 
 
@@ -16,5 +18,11 @@ class CatalogosService:
         ]
         return resultado
 
-    async def obtener_sucursales(self, limit: int = 10, offset: int = 0): 
-        sucursales = await self.catalogo_repo.get_sucursales(limit,offset)
+    async def obtener_sucursales(self, limit: int = 10, offset: int = 0):
+        sucursales = await self.catalogo_repo.get_sucursales(limit, offset)
+        return sucursales
+
+    async def obtener_sucursal_cercana(self, latitute: float, longitud: float):
+        sucursales = await self.catalogo_repo.get_sucursales()
+        result = await GoogleMapsService.get_nearest_sucursal(latitute, longitud,sucursales)
+        return result

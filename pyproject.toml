@@ -15,6 +15,7 @@ pydantic-settings = "^2.7.1"
 asyncpg = "^0.30.0"
 dependency-injector = "^4.45.0"
 psycopg2 = "^2.9.10"
+requests = "^2.32.3"
 
 
 [build-system]

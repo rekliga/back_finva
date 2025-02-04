@@ -1,4 +1,4 @@
-from sqlalchemy import Table, Column, Integer, String
+from sqlalchemy import Table, Column, Integer, String, Float
 from infraestructure.db import metadata
 
 sucursales = Table(
@@ -10,4 +10,6 @@ sucursales = Table(
     Column("numero exterior", Integer, nullable=False),
     Column("ciudad", String(50), nullable=False),
     Column("estado", String(50), nullable=False),
+    Column("lat", Float, nullable=True),
+    Column("lng", Float, nullable=True),
 )
