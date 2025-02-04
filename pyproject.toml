@@ -14,7 +14,6 @@ sqlalchemy = "^2.0.37"
 pydantic-settings = "^2.7.1"
 asyncpg = "^0.30.0"
 dependency-injector = "^4.45.0"
-psycopg2 = "^2.9.10"
 requests = "^2.32.3"
 pydantic = {extras = ["email"], version = "^2.10.6"}
 pyjwt = "^2.10.1"
