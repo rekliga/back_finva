@@ -8,7 +8,7 @@ from config.settings import settings
 DATABASE_URL = f"postgresql+asyncpg://{settings.user}:{settings.password}@{settings.host}:{settings.port}/{settings.bd_name}"
 
 
-engine = create_async_engine(DATABASE_URL, echo=True)
+engine = create_async_engine(DATABASE_URL, echo=False)
 
 metadata = MetaData()
 
