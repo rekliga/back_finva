@@ -4,6 +4,5 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install poetry && poetry install
-RUN poetry install --no-root --no-interaction --no-ansi
-CMD ["poetry", "run", "uvicorn", "app.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+RUN pip install -r requirements.txt 
+CMD ["uvicorn", "app.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
