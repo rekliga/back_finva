@@ -1,7 +1,6 @@
 import pytest
 from httpx import AsyncClient
 from fastapi import status
-from app.api.main import app
 from infraestructure.dependencias.containers import Container
 from app.utils.utils import BearerToken
 
@@ -29,9 +28,9 @@ class DummyCatalogoRepository:
         return {"id": 1, "nombre": "Sucursal Dummy", "distancia": 0.5}
 
 
-app.dependency_overrides[Container.repositorio_catalogos] = (
-    lambda: DummyCatalogoRepository()
-)
+# app.dependency_overrides[Container.repositorio_catalogos] = (
+#     lambda: DummyCatalogoRepository()
+# )
 
 
 async def dummy_decode_token(token: str) -> BearerToken:
@@ -41,7 +40,7 @@ async def dummy_decode_token(token: str) -> BearerToken:
 
 from app.utils import utils
 
-app.dependency_overrides[utils.decode_token] = dummy_decode_token
+# app.dependency_overrides[utils.decode_token] = dummy_decode_token
 
 
 @pytest.mark.asyncio
